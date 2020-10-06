@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False"
+             Shell.TabBarBackgroundColor="Transparent"
+             Shell.BackgroundColor="#FFB71C1C" 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="ConfiguracioServidor"
+             xmlns:local= "clr-namespace:CellariumAndroid.Services"
+             x:Class="CellariumAndroid.Views.SrvCfg"
+             NavigationPage.HasNavigationBar="false"
+>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid  
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand">
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Source="LogosScanTechNegro.png" HeightRequest="40" WidthRequest="100" Margin="0,1,0,0"/>
+                    
+                    <StackLayout Grid.Row="1" Padding="30,0" VerticalOptions="FillAndExpand">
+                        <Entry x:Name="IpAdress"  Placeholder="Dirección IP" PlaceholderColor="Black" TextColor="Black" Keyboard="Telephone" Completed="IpAdress_Completed" />
+                        <Entry x:Name="ServerText" Placeholder="Servidor" PlaceholderColor="Black" TextColor="Black" Completed="ServerText_Completed" />
+                        <Entry x:Name="Database" Text="CellariumSmall" Placeholder="Base de datos" PlaceholderColor="Black" TextColor="Black" Completed="Database_Completed" />
+                        <Entry x:Name="Username" Text="UsrCellarium" Placeholder="Usuario" PlaceholderColor="Black" TextColor="Black" Completed="Username_Completed"/>
+                        <Entry x:Name="Password" Text="wmsStC@#C3ll@rium" Placeholder="Contraseña" PlaceholderColor="Black" IsPassword="True" TextColor="Black" />
+                        <StackLayout Padding="30,0" Margin="0,40,0,0">
+                            <Button Text="Guardar" Clicked="SaveButton_Clicked" BackgroundColor="#FFB71C1C" CornerRadius="20" TextColor="White" />
+                        </StackLayout>
+
+                    </StackLayout>
+                </Grid>
+
+                <BoxView 
+                    x:Name="Opaque" 
+                    Color="Black" 
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="False" 
+                    Opacity="0.7"/>
+                
+                <ActivityIndicator 
+                    x:Name="defaultActivityIndicator"
+                    VerticalOptions="CenterAndExpand"
+                    Color="#FFB71C1C"
+                    HorizontalOptions="Fill"/>
+              
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

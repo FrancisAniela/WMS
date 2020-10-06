@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"           
+             xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:custom="clr-namespace:CellariumAndroid.Services"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:yummy ="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:local="clr-namespace:CellariumAndroid.Services"
+             xmlns:ViewModels ="clr-namespace:CellariumAndroid.ViewModels"
+             x:Class="CellariumAndroid.Views.Recepcion.OrdenesDisponibles">
+    
+
+    <ContentPage.Content>
+        <yummy:PancakeView
+            BackgroundGradientEndColor="#FFB71C1C"
+            BackgroundGradientStartColor="#333333"
+            BackgroundGradientAngle="180">
+            <ScrollView>
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout>
+                            <Image Grid.Row="0" Source="recepcionAlmacen.png" HeightRequest="90" WidthRequest="130" Margin="0,0,0,5"/>
+                        </StackLayout>
+
+                        <StackLayout    
+                                Margin="30,0,30,0"
+                                Orientation="Horizontal"                            
+                                BackgroundColor="Transparent"                             
+                                Padding="10,10"
+                                Grid.Row="1">
+                            <Grid 
+                                    HorizontalOptions="FillAndExpand"                                             
+                                    VerticalOptions="FillAndExpand"                                              
+                                    Padding="5" IsVisible="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Frame  CornerRadius="100" Grid.Row="0" Grid.Column="2" HeightRequest="50" WidthRequest="50" HorizontalOptions="Fill">
+                                        <ImageButton x:Name="BtnMostrarOrdenes" Clicked="BtnMostrarOrdenes_Clicked" BackgroundColor="White" Margin="-10,-10,-10,-10" Source="searchfile.png" HeightRequest="50" WidthRequest="50" />
+                                    </Frame>
+                                    <Label IsVisible="False"  x:Name="LblOrdenesRecepcion" Text="Ordenes de recepción activas" Margin="10,0,0,0" TextColor="White" Grid.Column="0" 
+                                           Grid.ColumnSpan="2" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                    <yummy:PancakeView 
+                                        IsVisible="False"
+                                        x:Name="ContenedorListView"
+                                        CornerRadius="20,20,20,0"                               
+                                        HasShadow="True" 
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="4"
+                                        VerticalOptions="FillAndExpand"                                       
+                                        Margin="2,2,2,2">
+                                        <ListView VerticalOptions="FillAndExpand"
+                                              x:Name="ListViewOrdenesActivas"
+                                              ItemsSource="{Binding AllItems}"                                  
+                                              BackgroundColor="White" 
+                                              RowHeight="40"
+                                              ItemSelected="ListViewOrdenesActivas_ItemSelected"
+                                              SeparatorColor="Gray"                                               
+                                              VerticalScrollBarVisibility="Always"
+                                              SelectionMode="Single"
+                                              HasUnevenRows="False">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <custom:CustomViewCell SelectedItemBackgroundColor="LightGray">
+                                                        <Grid HorizontalOptions="FillAndExpand"                                             
+                                                          VerticalOptions="FillAndExpand"                                              
+                                                          Padding="5" >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label                                                 
+                                                                Text="{Binding Codigo}"                                                 
+                                                                Grid.Row="0"                                                                                             
+                                                                Grid.Column="0" 
+                                                                HorizontalTextAlignment="Center"
+                                                                TextColor="#C12020"               
+                                                                HorizontalOptions="CenterAndExpand"                                                     
+                                                                IsVisible="True"
+                                                                FontSize="18"/>
+                                                        </Grid>
+                                                    </custom:CustomViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </yummy:PancakeView>
+                                </Grid>
+                                
+                                <StackLayout Margin="0,0,0,30" Orientation="Vertical" Grid.ColumnSpan="2" VerticalOptions="StartAndExpand"  Grid.Row="1">
+                                    <Label                                               
+                                        Text="Dispare código"                             
+                                        HorizontalTextAlignment="Start"                            
+                                        FontAttributes="None"                              
+                                        TextColor="White"                             
+                                        FontSize="15"/>
+                                    <local:CustomEntry 
+                                        x:Name="EntCodigoOrdenRecepcion"                           
+                                        Placeholder="Código orden repcepción"                            
+                                        PlaceholderColor="White"                            
+                                        TextColor="White"  
+                                        Margin="0,0,0,0"                                        
+                                        effects:KeyboardEffect.EnableKeyboard="False" 
+                                        effects:KeyboardEffect.RequestFocus="True">
+                                    </local:CustomEntry>
+                                </StackLayout>
+
+                                <StackLayout                                 
+                                        Padding="0,-20"
+                                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                                    <Button                                
+                                    Text="Seleccionar"                              
+                                    Clicked="Validar_Clicked"                                                          
+                                    BackgroundColor="White" CornerRadius="20" 
+                                    TextColor="#FFB71C1C"
+                                    Margin="0,10,0,10"
+                                    IsVisible="True"
+                                    FontSize="16"
+                                    Grid.Row="2"/>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                    <BoxView x:Name="Opaque" Color="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsOpaque}" Opacity="0.7"/>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" >
+                        <ActivityIndicator x:Name="defaultActivityIndicator"
+                               VerticalOptions="CenterAndExpand"
+                               Color="#FFB71C1C"
+                               HorizontalOptions="Fill"
+                               IsRunning="{Binding  ActivatyIndicatorAvaible}"/>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

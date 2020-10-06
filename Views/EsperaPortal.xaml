@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False" 
+             xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             mc:Ignorable="d"
+             xmlns:yummy ="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:local="clr-namespace:CellariumAndroid.Services"
+             x:Class="CellariumAndroid.Views.EsperaPortal">
+    <ContentPage.Content>
+        <yummy:PancakeView
+            BackgroundGradientEndColor="#FFB71C1C"
+            BackgroundGradientStartColor="#333333"
+            BackgroundGradientAngle="180">
+            <ScrollView>
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="1" Padding="30,0"  VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand">
+                            <Image Grid.Row="1" Source="articuloMontacarga.png" HeightRequest="110" WidthRequest="180" Margin="0,20,0,5"/>
+                            <Label x:Name="ErrorText" Text="Pase por el Portal" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" FontAttributes="Bold" BackgroundColor="Transparent"/>
+                            <ActivityIndicator x:Name="defaultActivityIndicator"
+                               VerticalOptions="CenterAndExpand"
+                               Color="#f4f4f4"
+                               HorizontalOptions="Fill"
+                               Margin="10,30,10,10"  
+                               Grid.Row="1"
+                               IsRunning="{Binding IsRunning}"/>
+                            <Button                                
+                                    Text="Continuar"  
+                                    Clicked="Continuar_Clicked"                                                          
+                                    BackgroundColor="White" CornerRadius="20" 
+                                    TextColor="#FFB71C1C"
+                                    Margin="10,20,10,10"
+                                    IsVisible="{Binding Visible}"
+                                    Grid.Row="2"
+                                    />
+                            <Label x:Name="Informaciontext" Text="{Binding LblInformation}" HorizontalTextAlignment="Center" TextColor="White" FontSize="15" FontAttributes="Bold" BackgroundColor="Transparent"/>
+                        </StackLayout>
+                    </Grid>
+                    <BoxView x:Name="Opaque" Color="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False" Opacity="0.7"/>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" >
+                        <ActivityIndicator x:Name="defaultActivityIndicatorReload"
+                           VerticalOptions="CenterAndExpand"
+                           Color="#FFB71C1C"
+                           HorizontalOptions="Fill"/>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

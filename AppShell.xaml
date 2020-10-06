@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell  xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:CellariumAndroid.Views"
+        mc:Ignorable="d"
+        x:Class="CellariumAndroid.AppShell"
+        FlyoutBehavior="Disabled" >
+    
+    <Shell.Items>
+
+        <Tab  AbsoluteLayout.LayoutBounds="1,0,1,0" 
+              Route="MainPage" 
+              IsTabStop="False"  >
+
+            <ShellContent 
+                Title="INICIO DE SESION" 
+                Route="Login" 
+                ContentTemplate="{DataTemplate views:LoginPage}"/>
+
+            <ShellContent 
+                Route="SrvCfg"  
+                Title="DATOS DEL SERVIDOR" 
+                ContentTemplate="{DataTemplate views:SrvCfg}"/>
+        </Tab>
+
+ 
+
+    </Shell.Items >
+
+    <Tab Route="Main" >
+        <ShellContent Title="Menu Principal" Route="MenuPrincipal" 
+                  ContentTemplate="{DataTemplate views:MainMenu}" IsTabStop="False" />
+    </Tab>
+
+
+    <Tab Route="Alm" >
+        <ShellContent Title="Almacenes"  Route="SelectAlmacen"
+                  ContentTemplate="{DataTemplate views:SeleccionAlmacen}" IsTabStop="False" />
+    </Tab>
+</Shell>    

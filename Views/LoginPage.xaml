@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             Shell.BackgroundColor="#FFB71C1C"
+             IconImageSource="ic_person_white_24dp.png"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="IniciarSesion"
+             xmlns:local= "clr-namespace:CellariumAndroid.Services"
+             xmlns:ViewModels ="clr-namespace:CellariumAndroid.ViewModels"
+             x:Class="CellariumAndroid.Views.LoginPage"
+             Visual="Material"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.TabBarIsVisible="False">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            
+            <Grid>
+               
+                <Image Source="wmswallpaper.jpg" Aspect="AspectFill"/>
+                <BoxView Color="#FFB71C1C" Opacity="0.60"/>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Source="LogoScantech.png" HeightRequest="70" WidthRequest="100" Margin="0,20,0,0"/>
+                    
+                    <StackLayout Grid.Row="1" Padding="30,20" >
+                        <local:CustomEntry  x:Name="usernameText" Text="admin" Placeholder="Usuario" PlaceholderColor="White" TextColor="White" Completed="usernameText_Completed" />
+                        <local:CustomEntry  x:Name="passwordText" Text="admin" Placeholder="Contraseña" IsPassword="True" PlaceholderColor="White" TextColor="White" />
+
+                        
+                        <StackLayout Padding="30,30,30,0">
+                            <Button Text="Iniciar Sesión" Clicked="LoginButton_Clicked" BackgroundColor="White" CornerRadius="20" TextColor="#FFB71C1C" />
+                        </StackLayout>
+
+                        <StackLayout Padding="30,0.5">
+                            <Button Text="Salir"  BackgroundColor="White" Clicked="LoginButtonSalir_Clicked" CornerRadius="20" TextColor="#FFB71C1C"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                                        
+                </Grid>
+                <BoxView x:Name="Opaque" Color="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsOpaque , Source={x:Static ViewModels:LoginViewModel.Login}}" Opacity="0.7"/>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" >
+                    <ActivityIndicator x:Name="defaultActivityIndicator"
+                           VerticalOptions="CenterAndExpand"
+                           Color="#FFB71C1C"
+                           IsRunning="{Binding ActivatyIndicatorAvaible , Source={x:Static ViewModels:LoginViewModel.Login}}"
+                           HorizontalOptions="Fill"/>
+                </StackLayout>
+               
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
